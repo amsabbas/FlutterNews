@@ -1,21 +1,27 @@
-import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+//@JsonSerializable()
 class News {
+  //@JsonKey(name: "id")
   final int id;
-  final String name;
-  final String desc;
+  //@JsonKey(name: "title")
+  final String title;
+  //@JsonKey(name: "body")
+  final String body;
+  //@JsonKey(name: "image")
+  final String image;
 
-  News({
-    @required this.id,
-    @required this.name,
-    @required this.desc,
-  });
+  News({this.id, this.title, this.body, this.image});
 
-   static fromJson(dynamic json) {
+  static fromJson(dynamic json) {
     return News(
-      id: json["id"] as int,
-      name: json["title"] as String,
-      desc: json["body"] as String,
-    );
+        id: json["id"] as int,
+        title: json["title"] as String,
+        body: json["body"] as String,
+        image: json['image'] as String);
   }
+
+
+  // factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
+  // Map<String, dynamic> toJson() => _$NewsToJson(this);
 }
