@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   get:
   json_annotation: any
+  get_it:
+  logger: ^1.1.0
 
 
   # The following adds the Cupertino Icons font to your application.

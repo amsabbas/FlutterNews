@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'injection_container.dart';
 import 'screen/news_screen.dart';
 
 void main() {
+  init();
   runApp(GetMaterialApp(
     home: MyApp(),
     theme: ThemeData(

@@ -1,14 +1,16 @@
+
+
 import 'package:json_annotation/json_annotation.dart';
 
-//@JsonSerializable()
+@JsonSerializable()
 class News {
-  //@JsonKey(name: "id")
+  @JsonKey(name: "id")
   final int id;
-  //@JsonKey(name: "title")
+  @JsonKey(name: "title")
   final String title;
-  //@JsonKey(name: "body")
+  @JsonKey(name: "body")
   final String body;
-  //@JsonKey(name: "image")
+  @JsonKey(name: "image")
   final String image;
 
   News({this.id, this.title, this.body, this.image});

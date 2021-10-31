@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/data/model/news.dart';
-import 'package:flutter_app/data/repository/news_repository_impl.dart';
-import 'package:flutter_app/data/source/network/news_api_service.dart';
-import 'package:flutter_app/data/source/news_remote_data_source.dart';
 import 'package:flutter_app/domain/interactor/news_use_case.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 
 import '../widget/news_item_list_widget.dart';
 
@@ -18,17 +16,8 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen> {
   Future<List<News>> getNews() {
     try {
-      GetNews newsUseCase = GetNews(
-        repository: NewsRepositoryImpl(
-          remoteDataSource: NewsRemoteDataSource(
-            apiService: NewsApiService(),
-          ),
-        ),
-      );
-      return newsUseCase.call();
-    } catch (error) {
-
-    }
+      return GetIt.instance<GetNews>().call();
+    } catch (error) {}
   }
 
   @override
