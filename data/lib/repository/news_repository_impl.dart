@@ -5,7 +5,7 @@ import 'package:domain/repository/news_repository.dart';
 class NewsRepositoryImpl implements NewsRepository {
   final NewsRemoteDataSource remoteDataSource;
 
-  NewsRepositoryImpl({this.remoteDataSource});
+  NewsRepositoryImpl({required this.remoteDataSource});
 
   @override
   Future<List<NewsModel>> getNews() async {

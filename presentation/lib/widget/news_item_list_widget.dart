@@ -1,19 +1,15 @@
 import 'package:domain/model/news_domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presentation/controllers/news_controllers.dart';
 import 'package:presentation/screen/news_details_screen.dart';
 
 class NewsItemList extends StatelessWidget {
-
-
   final List<NewsModel> news;
 
-  NewsItemList({this.news});
+  NewsItemList({required this.news});
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       child: ListView.builder(
           itemCount: news.length,
@@ -36,7 +32,7 @@ class NewsItemList extends StatelessWidget {
                     maxLines: 1,
                   ),
                   leading: Hero(
-                    tag: news[position].image,
+                    tag: news[position].image!,
                     child: CircleAvatar(
                       radius: 20,
                       backgroundColor: Colors.transparent,

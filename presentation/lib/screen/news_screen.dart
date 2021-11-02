@@ -1,8 +1,6 @@
-import 'package:domain/interactor/news_use_case.dart';
 import 'package:domain/model/news_domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
 import 'package:presentation/controllers/news_controllers.dart';
 
 import '../widget/news_item_list_widget.dart';
@@ -36,7 +34,7 @@ class _NewsScreenState extends State<NewsScreen> {
             return snapshot.connectionState == ConnectionState.waiting ||
                     snapshot.data == null
                 ? Center(child: CircularProgressIndicator())
-                : NewsItemList(news: snapshot.data);
+                : NewsItemList(news: snapshot.data!);
           },
         ),
       ),

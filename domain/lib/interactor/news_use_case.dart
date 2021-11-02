@@ -7,7 +7,7 @@ import '../repository/news_repository.dart';
 class GetNews {
   final NewsRepository repository;
 
-  GetNews({this.repository});
+  GetNews({required this.repository});
 
   Future<List<NewsModel>> call() async {
     return repository.getNews();
