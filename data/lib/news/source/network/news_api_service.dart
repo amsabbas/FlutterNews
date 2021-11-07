@@ -1,9 +1,12 @@
 import 'dart:convert';
-import 'package:data/model/exception.dart';
-import 'package:data/model/news.dart';
+
 import 'package:either_dart/either.dart';
 import 'package:get/get_connect/connect.dart';
 
+import '../../model/exception.dart';
+import '../../model/news.dart';
+
+//unused class
 class NewsApiService extends GetConnect {
   @override
   void onInit() {

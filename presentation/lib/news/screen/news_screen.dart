@@ -1,9 +1,8 @@
-import 'package:domain/model/news_model.dart';
-import 'package:either_dart/either.dart';
+import 'package:domain/news/model/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:domain/model/news_error.dart';
-import 'package:presentation/controllers/news_controllers.dart';
+import '../controllers/news_controllers.dart';
+import '../model/data_resource.dart';
 
 import '../widget/news_item_list_widget.dart';
 
@@ -25,17 +24,29 @@ class _NewsScreenState extends State<NewsScreen> {
         title: Text("News"),
       ),
       body: Center(
-        child: FutureBuilder<Either<NewsError, List<NewsModel>>>(
+        child: FutureBuilder<DataResource<List<NewsModel>>>(
           future: controller.getNews(),
           builder: (context, snapshot) {
+
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError ||
-                (snapshot.data != null && snapshot.data!.isLeft)) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (snapshot.data != null) {
+              switch (snapshot.data!.status) {
+                case Status.loading:
+                  return const Center(child: CircularProgressIndicator());
+
+                case Status.error:
+                  showDialog();
+                  return Container();
+
+                case Status.success:
+                  return NewsItemList(snapshot.data?.data);
+              }
+            } else {
               showDialog();
               return Container();
-            } else {
-              return NewsItemList(news: snapshot.data!.right);
             }
           },
         ),

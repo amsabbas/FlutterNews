@@ -2,13 +2,13 @@ import 'package:common/utils/log_filter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:presentation/controllers/news_controllers.dart';
+import '../controllers/news_controllers.dart';
 
 
 class NewsScreenDetails extends StatelessWidget {
   void getListOfNews() {
     Logger(filter: MyLogFilter()).d(
-        "getListOfNews id:" + Get.find<NewsController>().news[0].id.toString());
+        "getListOfNews id:" + Get.find<NewsController>().newsResource.data![0].id.toString());
   }
 
   @override

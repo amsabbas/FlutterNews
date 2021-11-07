@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presentation/injection_container.dart';
-import 'package:presentation/screen/news_screen.dart';
+import 'package:presentation/news/injection_container.dart';
+import 'package:presentation/news/screen/news_screen.dart';
 
 void main() {
   init();

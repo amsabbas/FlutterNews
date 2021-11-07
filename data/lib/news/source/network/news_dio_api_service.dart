@@ -1,7 +1,10 @@
-import 'package:data/model/exception.dart';
-import 'package:data/model/news.dart';
 import 'package:dio/dio.dart';
+
+import '../..//model/exception.dart';
+import '../../model/news.dart';
+
 class NewsDioApiService {
+
   Future<List<NewsData>> getNews() async {
     try {
       final response = await Dio()
@@ -17,4 +20,5 @@ class NewsDioApiService {
       throw ServerException(error.toString());
     }
   }
+
 }

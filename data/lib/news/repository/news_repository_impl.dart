@@ -1,8 +1,8 @@
-import 'package:data/model/exception.dart';
-import 'package:data/source/news_remote_data_source.dart';
-import 'package:domain/model/news_model.dart';
-import 'package:domain/repository/news_repository.dart';
-import 'package:domain/model/news_error.dart';
+import '../model/exception.dart';
+import '../source/news_remote_data_source.dart';
+import 'package:domain/news/model/error.dart';
+import 'package:domain/news/model/news_model.dart';
+import 'package:domain/news/repository/news_repository.dart';
 import 'package:either_dart/either.dart';
 
 class NewsRepositoryImpl implements NewsRepository {
@@ -11,7 +11,7 @@ class NewsRepositoryImpl implements NewsRepository {
   NewsRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<NewsError, List<NewsModel>>> getNews() async {
+  Future<Either<Error, List<NewsModel>>> getNews() async {
     try {
       var news = await remoteDataSource.getNews();
       var newsModel = List<NewsModel>.from(news.map((e) =>

@@ -1,4 +1,4 @@
-import 'package:domain/model/news_error.dart';
+import 'package:domain/news/model/error.dart';
 
 class ServerException implements Exception {
   final String message;
@@ -6,13 +6,13 @@ class ServerException implements Exception {
 
   ServerException(this.message, [this.code]);
 
-  NewsError getError() {
+  Error getError() {
     if (code == 500 || code == 400) {
-      return NewsError.GENERAL_ERROR;
+      return Error.general;
     } else if (code == 401 || code == 403) {
-      return NewsError.UNAUTHORIZED_ERROR;
+      return Error.unauthorized;
     } else {
-      return NewsError.GENERAL_ERROR;
+      return Error.general;
     }
   }
 }
