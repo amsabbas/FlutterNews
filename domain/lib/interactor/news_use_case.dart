@@ -1,6 +1,6 @@
-
-
-import 'package:domain/model/news_domain_model.dart';
+import 'package:domain/model/news_error.dart';
+import 'package:domain/model/news_model.dart';
+import 'package:either_dart/either.dart';
 
 import '../repository/news_repository.dart';
 
@@ -9,7 +9,7 @@ class GetNews {
 
   GetNews({required this.repository});
 
-  Future<List<NewsModel>> call() async {
+  Future<Either<NewsError, List<NewsModel>>> call() async {
     return repository.getNews();
   }
 }

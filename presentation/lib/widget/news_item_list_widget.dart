@@ -1,4 +1,4 @@
-import 'package:domain/model/news_domain_model.dart';
+import 'package:domain/model/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:presentation/screen/news_details_screen.dart';

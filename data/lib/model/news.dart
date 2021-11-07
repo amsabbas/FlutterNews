@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'news.g.dart';
 
 @JsonSerializable()
-class News {
+class NewsData {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "title")
@@ -13,7 +13,7 @@ class News {
   @JsonKey(name: "image")
   final String? image;
 
-  News({this.id, this.title, this.body, this.image});
+  NewsData({this.id, this.title, this.body, this.image});
 
   // static fromJson(dynamic json) {
   //   return News(
@@ -23,7 +23,6 @@ class News {
   //       image: json['image'] as String);
   // }
 
-
-  factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
+  factory NewsData.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
   Map<String, dynamic> toJson() => _$NewsToJson(this);
 }

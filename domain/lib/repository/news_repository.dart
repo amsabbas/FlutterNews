@@ -1,5 +1,8 @@
-import 'package:domain/model/news_domain_model.dart';
+
+import 'package:domain/model/news_model.dart';
+import 'package:domain/model/news_error.dart';
+import 'package:either_dart/either.dart';
 
 abstract class NewsRepository {
-  Future<List<NewsModel>> getNews();
+  Future<Either<NewsError,List<NewsModel>>> getNews();
 }

@@ -1,6 +1,8 @@
-import 'package:domain/model/news_domain_model.dart';
+import 'package:domain/model/news_model.dart';
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:domain/model/news_error.dart';
 import 'package:presentation/controllers/news_controllers.dart';
 
 import '../widget/news_item_list_widget.dart';
@@ -23,18 +25,18 @@ class _NewsScreenState extends State<NewsScreen> {
         title: Text("News"),
       ),
       body: Center(
-        child: FutureBuilder<List<NewsModel>>(
+        child: FutureBuilder<Either<NewsError, List<NewsModel>>>(
           future: controller.getNews(),
           builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              //showDialog();
-              print("snapshot" + snapshot.error.toString());
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError ||
+                (snapshot.data != null && snapshot.data!.isLeft)) {
+              showDialog();
+              return Container();
+            } else {
+              return NewsItemList(news: snapshot.data!.right);
             }
-
-            return snapshot.connectionState == ConnectionState.waiting ||
-                    snapshot.data == null
-                ? Center(child: CircularProgressIndicator())
-                : NewsItemList(news: snapshot.data!);
           },
         ),
       ),
@@ -46,9 +48,22 @@ class _NewsScreenState extends State<NewsScreen> {
       Duration.zero,
       () => Get.dialog(
         AlertDialog(
-          title: Text("Failed"),
-          content: Text("Something went wrong"),
-          actions: <Widget>[],
+          title: Text(
+            "Failed",
+            style: Theme.of(context).textTheme.headline5,
+          ),
+          content: Text("Something went wrong",
+              style: Theme.of(context).textTheme.headline6),
+          actions: <Widget>[
+            TextButton(
+                child: Text(
+                  'OK',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
         ),
       ),
     );

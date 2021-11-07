@@ -1,6 +1,6 @@
 
 import 'package:data/repository/news_repository_impl.dart';
-import 'package:data/source/network/news_api_service.dart';
+import 'package:data/source/network/news_dio_api_service.dart';
 import 'package:data/source/news_remote_data_source.dart';
 import 'package:domain/interactor/news_use_case.dart';
 import 'package:domain/repository/news_repository.dart';
@@ -9,13 +9,13 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 void init() {
-  getIt.registerFactory<NewsApiService>(
-    () => NewsApiService(),
+  getIt.registerFactory<NewsDioApiService>(
+    () => NewsDioApiService(),
   );
 
 
   getIt.registerFactory<NewsRemoteDataSource>(
-    () => NewsRemoteDataSource(apiService: getIt<NewsApiService>()),
+    () => NewsRemoteDataSource(apiService: getIt<NewsDioApiService>()),
   );
 
   getIt.registerFactory<NewsRepository>(

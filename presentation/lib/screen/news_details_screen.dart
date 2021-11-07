@@ -1,8 +1,9 @@
+import 'package:common/utils/log_filter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:presentation/controllers/news_controllers.dart';
-import 'package:presentation/utils/log_filter.dart';
+
 
 class NewsScreenDetails extends StatelessWidget {
   void getListOfNews() {

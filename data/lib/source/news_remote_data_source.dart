@@ -1,13 +1,15 @@
+import 'package:data/model/exception.dart';
 import 'package:data/model/news.dart';
+import 'package:either_dart/either.dart';
 
-import 'network/news_api_service.dart';
+import 'network/news_dio_api_service.dart';
 
 class NewsRemoteDataSource {
-  final NewsApiService apiService;
+  final NewsDioApiService apiService;
 
   NewsRemoteDataSource({required this.apiService});
 
-  Future<List<News>> getNews() {
+  Future<List<NewsData>> getNews() {
     return apiService.getNews();
   }
 }
